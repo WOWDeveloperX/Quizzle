@@ -25,6 +25,14 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> storeKeeper = [
+    Icon(Icons.check, color: Colors.green),
+    Icon(Icons.close, color: Colors.red),
+    Icon(Icons.close, color: Colors.red),
+    Icon(Icons.close, color: Colors.red),
+    Icon(Icons.close, color: Colors.red),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,7 +69,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
+                Icon(Icons.check, color: Colors.green);
               },
             ),
           ),
@@ -84,14 +92,16 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: storeKeeper,
+        )
       ],
     );
   }
 }
 
 /*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
+вопрос1: 'Корову можно вести по лестнице, но не вверх', false,
+вопрос2: 'Примерно четверть костей человека находится в ступнях', true,
+вопрос3: 'Кровь слизняка\ зеленого цвета.', true,
 */
