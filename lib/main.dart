@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
+
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -25,13 +29,20 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> storeKeeper = [
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.close, color: Colors.red),
-  ];
+  List<Icon> storeKeeper = [];
+
+  // List<String> questions = [
+  //   'Корову можно вести по лестнице, но не вверх',
+  //   'Примерно четверть костей человека находится в ступнях',
+  //   'Кровь слизняка \= зеленого цвета.'
+  // ];
+
+  // List<bool> answers = [false, true, true];
+
+  // Question q =
+  //     Question(q: 'Корову можно вести по лестнице, но не вверх', a: false);
+
+  int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -69,7 +80,21 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                Icon(Icons.check, color: Colors.green);
+                // quizBrain.questionBank[questionNumber].questionAnsver = true;
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnsver;
+
+                if (correctAnswer == true) {
+                  print('Верно');
+                } else {
+                  print('Не верно');
+                }
+
+                setState(() {
+                  storeKeeper.add(Icon(Icons.check, color: Colors.green));
+                  questionNumber++;
+                  print(questionNumber);
+                });
               },
             ),
           ),
@@ -87,7 +112,19 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                // quizBrain.questionBank[questionNumber].questionAnsver = false;
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnsver;
+                if (correctAnswer == false) {
+                  print('верно');
+                } else {
+                  print('не Верно');
+                }
+                setState(() {
+                  storeKeeper.add(Icon(Icons.close, color: Colors.red));
+                  questionNumber++;
+                  print(questionNumber);
+                });
               },
             ),
           ),
@@ -100,8 +137,4 @@ class _QuizPageState extends State<QuizPage> {
   }
 }
 
-/*
-вопрос1: 'Корову можно вести по лестнице, но не вверх', false,
-вопрос2: 'Примерно четверть костей человека находится в ступнях', true,
-вопрос3: 'Кровь слизняка\ зеленого цвета.', true,
-*/
+//TODO приложениние не запускается 
