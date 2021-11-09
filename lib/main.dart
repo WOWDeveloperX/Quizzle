@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'quiz_brain.dart';
+import 'quizz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -39,9 +39,6 @@ class _QuizPageState extends State<QuizPage> {
 
   // List<bool> answers = [false, true, true];
 
-  // Question q =
-  //     Question(q: 'Корову можно вести по лестнице, но не вверх', a: false);
-
   int questionNumber = 0;
 
   @override
@@ -55,12 +52,19 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Center(
-              child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    //BUG: ошибка в текстовом виджете
+                    //(нужно чтобы он видел выражение как строку)
+                    quizBrain.questionBank[questionNumber].questionText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -137,4 +141,5 @@ class _QuizPageState extends State<QuizPage> {
   }
 }
 
-//TODO приложениние не запускается 
+
+
