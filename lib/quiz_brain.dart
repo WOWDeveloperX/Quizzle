@@ -1,7 +1,7 @@
-import 'question.dart';
+import 'package:quizzler/question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
+  List<Question> _questionBank = [
     Question('У некоторых кошек бывает аллергия на людей', true),
     Question('Вы можете вести корову по лестнице, но не вверх по ней', false),
     Question('Примерно четверть костей человека находится в ступнях', true),
@@ -25,4 +25,11 @@ class QuizBrain {
         'Шоколад влияет на сердце и нервную систему собаки; нескольких унций достаточно, чтобы убить маленькую собаку',
         true),
   ];
+  String getQuestionText(int questionNumber) {
+    return _questionBank[questionNumber].questionText;
+  }
+
+  bool getCorrectAnsver(int questionNumber) {
+    return _questionBank[questionNumber].questionAnsver;
+  }
 }
