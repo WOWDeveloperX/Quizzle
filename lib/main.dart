@@ -30,24 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> storeKeeper = [];
 
-  // List<String> questions = [
-  //   'Корову можно вести по лестнице, но не вверх',
-  //   'Примерно четверть костей человека находится в ступнях',
-  //   'Кровь слизняка \= зеленого цвета.'
-  // ];
-
-  // Question q1 =
-  //     Question(q: 'Корову можно вести по лестнице, но не вверх', a: false);
-
-  // List<Question> answers = [false, true, true];
-
-  // List<Question> questionBank = [
-  //   Question(q: 'Корову можно вести по лестнице, но не вверх', a: false),
-  //   Question(
-  //       q: 'Примерно четверть костей человека находится в ступнях', a: true),
-  //   Question(q: 'Кровь слизняка \= зеленого цвета.', a: true),
-  // ];
-
   int questionNumber = 0;
 
   @override
@@ -65,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    quizBrain.getQuestionText(questionNumber),
+                    quizBrain.questionBank[questionNumber].questionText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25.0,
@@ -91,8 +73,11 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                // quizBrain.questionBank[questionNumber].questionAnsver = true;
-                bool correctAnswer = quizBrain.getCorrectAnsver(questionNumber);
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnsver;
+
+                // quizBrain
+                //     .questionBank[questionNumber].questionAnsver = true;
 
                 if (correctAnswer == true) {
                   print('Верно');
@@ -122,8 +107,10 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                // quizBrain.questionBank[questionNumber].questionAnsver = false;
-                bool correctAnswer = quizBrain.getCorrectAnsver(questionNumber);
+//HACK
+
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnsver;
                 if (correctAnswer == false) {
                   print('верно');
                 } else {
