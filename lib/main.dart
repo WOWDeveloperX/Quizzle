@@ -30,8 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> storeKeeper = [];
 
-  int questionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,7 +45,7 @@ class _QuizPageState extends State<QuizPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    quizBrain.questionBank[questionNumber].questionText,
+                    quizBrain.getQuestionText(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25.0,
@@ -73,11 +71,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnsver;
+//HACK
 
-                // quizBrain
-                //     .questionBank[questionNumber].questionAnsver = true;
+                bool correctAnswer = quizBrain.getCorrectAnsver();
 
                 if (correctAnswer == true) {
                   print('Верно');
@@ -86,9 +82,13 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  storeKeeper.add(Icon(Icons.check, color: Colors.green));
-                  questionNumber++;
-                  print(questionNumber);
+                  quizBrain.nextQuestion();
+
+                  if (correctAnswer == true) {
+                    storeKeeper.add(Icon(Icons.check, color: Colors.green));
+                  } else {
+                    storeKeeper.add(Icon(Icons.close, color: Colors.red));
+                  }
                 });
               },
             ),
@@ -107,20 +107,26 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-//HACK
+                bool correctAnswer = quizBrain.getCorrectAnsver();
 
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnsver;
                 if (correctAnswer == false) {
                   print('верно');
                 } else {
                   print('не Верно');
                 }
-                setState(() {
-                  storeKeeper.add(Icon(Icons.close, color: Colors.red));
-                  questionNumber++;
-                  print(questionNumber);
-                });
+
+                setState(
+                  () {
+                    quizBrain.nextQuestion();
+
+                    if (correctAnswer == false) {
+                      storeKeeper.add(Icon(Icons.check, color: Colors.green));
+                    } else {
+                      storeKeeper.add(Icon(Icons.close, color: Colors.red));
+                      ;
+                    }
+                  },
+                );
               },
             ),
           ),
