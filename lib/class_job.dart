@@ -38,3 +38,43 @@ class Human {
   //       q: 'Примерно четверть костей человека находится в ступнях', a: true),
   //   Question(q: 'Кровь слизняка \= зеленого цвета.', a: true),
   // ];
+
+
+// void main() {
+  
+  
+  
+//   Car myNormalCar = Car();
+//   print(myNormalCar.numberOfSet);
+  
+//   myNormalCar.drive();
+  
+
+// ElectroCar tesla = ElectroCar();
+  
+//   tesla.drive();
+  
+//   print (tesla.batteryLevel);
+
+// }
+
+// class Car {
+  
+  
+//   int numberOfSet = 5 ;
+  
+//   void drive () {
+    
+//     print ("Машина Едет");
+//   }
+// }
+
+
+// class ElectroCar  extends Car {
+  
+//   int batteryLevel = 100;
+  
+  
+  
+  
+// }
