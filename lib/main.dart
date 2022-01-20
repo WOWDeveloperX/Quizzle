@@ -97,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
+            child: FlatButton(  
               color: Colors.red,
               child: Text(
                 'False',
@@ -123,7 +123,7 @@ class _QuizPageState extends State<QuizPage> {
                       storeKeeper.add(Icon(Icons.check, color: Colors.green));
                     } else {
                       storeKeeper.add(Icon(Icons.close, color: Colors.red));
-                      ;
+                      
                     }
                   },
                 );

@@ -1,23 +1,23 @@
-void main() {
-  Human jenny = Human(startingHeight: 15);
+// void main() {
+//   Human jenny = Human(startingHeight: 15);
 
-  print(jenny.height);
+//   print(jenny.height);
 
-  jenny.talk('Почему небо голубое?');
-}
+//   jenny.talk('Почему небо голубое?');
+// }
 
-class Human {
-  double height;
-  int age = 0;
+// class Human {
+//   double height;
+//   int age = 0;
 
-  Human({double startingHeight}) {
-    height = startingHeight;
-  }
+//   Human({double startingHeight}) {
+//     height = startingHeight;
+//   }
 
-  void talk(String whatToSay) {
-    print(whatToSay);
-  }
-}
+//   void talk(String whatToSay) {
+//     print(whatToSay);
+//   }
+// }
 
 
 
@@ -40,41 +40,51 @@ class Human {
   // ];
 
 
-// void main() {
-  
-  
-  
-//   Car myNormalCar = Car();
-//   print(myNormalCar.numberOfSet);
-  
-//   myNormalCar.drive();
-  
-
-// ElectroCar tesla = ElectroCar();
-  
-//   tesla.drive();
-  
-//   print (tesla.batteryLevel);
-
-// }
-
 // class Car {
   
-  
-//   int numberOfSet = 5 ;
+//   int numberOfSeat = 5;
   
 //   void drive () {
-    
-//     print ("Машина Едет");
+// print ('Машина едет');    
+//   }
+// }
+
+// class ElectricCar extends Car {
+  
+//   int batteryLevel = 100;
+  
+//   void recharge() {
+//     batteryLevel = 100;
 //   }
 // }
 
 
-// class ElectroCar  extends Car {
+// class LevitatingCar extends Car {
   
-//   int batteryLevel = 100;
+//   @override 
+  
+//   void drive () {
+// print ('Машина летит');
+    
+    
+//   }
+// }
+
+
+// class SelfDrivingCar extends Car {
   
   
+//  late String destination;
   
+//   SelfDrivingCar(String userSetDestintion) {
+    
+//     destination = userSetDestintion;
+//   }
   
+//   @override 
+//   void drive() {super.drive();
+//                print ('Машина сама едет до $destination');
+
+//                }
+
 // }
