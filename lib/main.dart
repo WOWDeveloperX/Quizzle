@@ -30,6 +30,23 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> storeKeeper = [];
 
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizBrain.getCorrectAnsver();
+
+    setState(
+      () {
+        if (userPickedAnswer == correctAnswer) {
+          storeKeeper.add(Icon(Icons.check, color: Colors.green));
+          print('Верно');
+        } else {
+          storeKeeper.add(Icon(Icons.close, color: Colors.red));
+          print('Не верно');
+        }
+        quizBrain.nextQuestion();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -71,25 +88,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-//HACK
-
-                bool correctAnswer = quizBrain.getCorrectAnsver();
-
-                if (correctAnswer == true) {
-                  print('Верно');
-                } else {
-                  print('Не верно');
-                }
-
-                setState(() {
-                  quizBrain.nextQuestion();
-
-                  if (correctAnswer == true) {
-                    storeKeeper.add(Icon(Icons.check, color: Colors.green));
-                  } else {
-                    storeKeeper.add(Icon(Icons.close, color: Colors.red));
-                  }
-                });
+                checkAnswer(true);
               },
             ),
           ),
@@ -97,7 +96,7 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(  
+            child: FlatButton(
               color: Colors.red,
               child: Text(
                 'False',
@@ -107,24 +106,11 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getCorrectAnsver();
-
-                if (correctAnswer == false) {
-                  print('верно');
-                } else {
-                  print('не Верно');
-                }
+                checkAnswer(false);
 
                 setState(
                   () {
                     quizBrain.nextQuestion();
-
-                    if (correctAnswer == false) {
-                      storeKeeper.add(Icon(Icons.check, color: Colors.green));
-                    } else {
-                      storeKeeper.add(Icon(Icons.close, color: Colors.red));
-                      
-                    }
                   },
                 );
               },
