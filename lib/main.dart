@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -33,18 +34,32 @@ class _QuizPageState extends State<QuizPage> {
   void checkAnswer(bool userPickedAnswer) {
     bool correctAnswer = quizBrain.getCorrectAnsver();
 
-    setState(
-      () {
+    setState(() {
+      if (quizBrain.isFinished() == true) {
+        Alert(
+          context: context,
+          title: 'Финишь!',
+          desc: 'Спасибо за игру!!!',
+        ).show();
+
+        quizBrain.reset();
+
+        storeKeeper = [];
+      } else {
         if (userPickedAnswer == correctAnswer) {
-          storeKeeper.add(Icon(Icons.check, color: Colors.green));
-          print('Верно');
+          storeKeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
         } else {
-          storeKeeper.add(Icon(Icons.close, color: Colors.red));
-          print('Не верно');
+          storeKeeper.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
         }
         quizBrain.nextQuestion();
-      },
-    );
+      }
+    });
   }
 
   @override
@@ -77,9 +92,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                onPrimary: Colors.white,
+                primary: Colors.green[900],
+                minimumSize: Size(88, 36),
+              ),
               child: Text(
                 'True',
                 style: TextStyle(
@@ -96,8 +114,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                onPrimary: Colors.black,
+                primary: Colors.red[600],
+                minimumSize: Size(88, 36),
+              ),
               child: Text(
                 'False',
                 style: TextStyle(
